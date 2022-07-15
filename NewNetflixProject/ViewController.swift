@@ -45,23 +45,6 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func idTextFieldClicked(_ sender: UITextField) {
-        let pw: String = userTextFieldCollection[1].text!
-        let alert = UIAlertController(title: "경고", message: "ID 및 PW는 필수적으로 입력해야됩니다.", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in}
-        alert.addAction(okAction)
-        
-        if userTextFieldCollection[0].text == "" {
-            userTextFieldCollection[0].attributedPlaceholder = NSAttributedString(string: "ID는 필수적으로 입력해야 합니다.", attributes: [NSAttributedString.Key.foregroundColor : UIColor.red])
-            present(alert, animated: false, completion: nil)
-            signupButton.isUserInteractionEnabled = false
-        }else if pw.count < 6 {
-            userTextFieldCollection[1].attributedPlaceholder = NSAttributedString(string: "PW는 6글자 이상으로 입력해야 합니다.", attributes: [NSAttributedString.Key.foregroundColor : UIColor.red])
-        }else {
-            signupButton.isUserInteractionEnabled = true
-        }
-    }
-    
     
     @IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -69,8 +52,19 @@ class ViewController: UIViewController {
     
     
     @IBAction func signUpButtonClicked(_ sender: UIButton) {
-
+        signupButton.isUserInteractionEnabled = true
+        let alertID = UIAlertController(title: "경고", message: "ID는 필수적으로 입력해야됩니다.", preferredStyle: UIAlertController.Style.alert)
+        let alertPW = UIAlertController(title: "경고", message: "PW는 필수적으로 입력해야됩니다.", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in}
+        alertID.addAction(okAction)
         
+        if userTextFieldCollection[0].text?.isEmpty == true {
+            userTextFieldCollection[0].attributedPlaceholder = NSAttributedString(string: "ID는 필수적으로 입력해야 합니다.", attributes: [NSAttributedString.Key.foregroundColor : UIColor.red])
+            present(alertID, animated: false, completion: nil)
+            signupButton.isUserInteractionEnabled = true
+        }else {
+            signupButton.isUserInteractionEnabled = false
+        }
     }
 }
     
