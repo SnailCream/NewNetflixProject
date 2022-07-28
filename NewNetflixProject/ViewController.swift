@@ -45,24 +45,6 @@ class ViewController: UIViewController {
         }
     }
     
-    //텍스트 필드 글자 수 세는 함수
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//            // backspace 허용
-//            if let char = string.cString(using: String.Encoding.utf8) {
-//                let isBackSpace = strcmp(char, "\\b")
-//                if isBackSpace == -92 {
-//                    return true
-//                }
-//            }
-//
-//            guard let text = textField.text else { return false }
-//            if text.count <= MAX_LENGHT {
-//                return false
-//            }
-//
-//            return true
-//        }
-    
     //뷰 컨트롤러 전환 함수
     func nextViewController() {
 //      if let signUp = self.storyboard?.instantiateViewController(withIdentifier: "nextView") as? NextViewViewController {
@@ -89,7 +71,7 @@ class ViewController: UIViewController {
         alertPW.addAction(okAction) //PW Alert
         
         //ID텍스트 필드에 아무런 텍스트가 입력이 안될시
-        guard userTextFieldCollection[0].text?.isEmpty == false else{
+        guard !userTextFieldCollection[0].text!.isEmpty else{
             //ID텍스트필드 붉은색 Placeholder로 경고 표시
             userTextFieldCollection[0].attributedPlaceholder = NSAttributedString(string: "ID는 필수적으로 입력해야 합니다.", attributes: [NSAttributedString.Key.foregroundColor : UIColor.red])
             //ID텍스트 필드 조건이 만족하지 않으면 Alert에 경고문 표시
